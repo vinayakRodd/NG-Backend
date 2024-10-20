@@ -89,7 +89,7 @@ const App = express();
 const PORT = 9000;
 
 // Replace 'https://your-backend-api-url.com' with your actual backend API URL
-const backendApiUrl = 'https://ng-backend-kr21.onrender.com';
+// const backendApiUrl = 'https://ng-backend-kr21.onrender.com';
 
 // Middleware setup
 App.use(cors({ origin: "*" }));
