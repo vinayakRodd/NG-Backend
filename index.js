@@ -81,7 +81,7 @@ const myDb = require('./MongoDb');
 const axios = require('axios');
 const PhysicsCyclePdf = require("./PhysicsCyclePdf");
 const ChemistryCyclePdf = require("./ChemistryCyclePdf");
-const SecondYearPdf = require("./SecondYearPdf")
+
 
 
 const App = express();
@@ -143,7 +143,7 @@ App.use(helmet.contentSecurityPolicy({
 // API routes
 App.use("/api/PhysicsCycle", PhysicsCyclePdf);
 App.use("/api/ChemistryCycle", ChemistryCyclePdf);
-App.use("/api/SecondYear",SecondYearPdf)
+
 
 
 // New route for proxying PDF requests
@@ -191,83 +191,6 @@ App.post("/api/GetChemistryCycleSubjects", async (req, resp) => {
     console.log(Subjects);
     resp.send(Subjects);
 });
-
-
-App.post("/api/GetSearchedBranchRelatedSubjects",async(req,resp)=>{
-
-    const Collection = null
-
-    const SearchedSubject = req.body.SubjectName
-    const Branch = req.body.Branch
-
-
-    console.log(SearchedSubject)
-
-
-
-    const regex = new RegExp(SearchedSubject, 'i'); 
-
-    const Subjects = [];
-    if(Branch === "CSE"){
-        Collection = myDb.collection("CSE")
-        Subjects = await Collection.find({ SubjectName: regex }).toArray();
-    }
-    else
-    if(Branch === "ISE"){
-        Collection = myDb.collection("ISE")
-        Subjects = await Collection.find({ SubjectName: regex }).toArray();
-    }
-    else
-    if(Branch === "ECE"){
-        Collection = myDb.collection("ECE")
-        Subjects = await Collection.find({ SubjectName: regex }).toArray();
-    }
-    else
-    if(Branch === "ETE"){
-        Collection = myDb.collection("ETE")
-        Subjects = await Collection.find({ SubjectName: regex }).toArray();
-    }
-    
-
-    console.log(Subjects)
-
-    resp.send(Subjects);
-})
-
-
-App.post("/api/getBranchRelatedPYQ",async(req,resp)=>{
-
-    var Collection;
-
-    const Sem = req.body.Sem
-    const Branch = req.body.Branch
-
-    var Subjects = [];
-    if(Branch === "CSE"){
-        Collection = myDb.collection("CSE")
-        Subjects = await Collection.find({ Sem:Sem }).toArray();
-    }
-    else
-    if(Branch === "ISE"){
-        Collection = myDb.collection("ISE")
-        Subjects = await Collection.find({  Sem:Sem  }).toArray();
-    }
-    else
-    if(Branch === "ECE"){
-        Collection = myDb.collection("ECE")
-        Subjects = await Collection.find({  Sem:Sem  }).toArray();
-    }
-    else
-    if(Branch === "ETE"){
-        Collection = myDb.collection("ETE")
-        Subjects = await Collection.find({  Sem:Sem  }).toArray();
-    }
-    
-
-    console.log(Subjects)
-
-    resp.send(Subjects);
-})
 
 
 
