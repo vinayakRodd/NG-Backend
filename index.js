@@ -76,7 +76,7 @@
 const express = require('express');
 const cors = require('cors');
 const bp = require('body-parser');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const myDb = require('./MongoDb');
 const axios = require('axios');
 const PhysicsCyclePdf = require("./PhysicsCyclePdf");
@@ -95,50 +95,50 @@ App.use(cors({ origin: "*" }));
 App.use(bp.json());
 App.use(express.urlencoded({ extended: false }));
 
-// Set security HTTP headers
-App.use(helmet());
+// // Set security HTTP headers
+// App.use(helmet());
 
-// HSTS configuration
-App.use(helmet.hsts({
-    maxAge: 31536000, // 1 year in seconds
-    includeSubDomains: true, // Apply to all subdomains
-    preload: true // Allow this domain to be included in browsers' HSTS preload list
-}));
+// // HSTS configuration
+// App.use(helmet.hsts({
+//     maxAge: 31536000, // 1 year in seconds
+//     includeSubDomains: true, // Apply to all subdomains
+//     preload: true // Allow this domain to be included in browsers' HSTS preload list
+// }));
 
-App.use(helmet.contentSecurityPolicy({
-    directives: {
-        defaultSrc: ["'self'"], // Only allow resources from the same origin
-        scriptSrc: [
-            "'self'",
-            backendApiUrl,
-            "https://cdnjs.cloudflare.com", // Allow scripts from CDN
-            "https://www.googletagmanager.com", // Google Tag Manager
-            "https://www.google-analytics.com", // Google Analytics
-            "https://apis.google.com", // Google APIs
-            "https://code.jquery.com", // jQuery
-            "https://unpkg.com", // Unpkg for various libraries
-            "'unsafe-inline'" // Allow inline scripts (be cautious with this)
-        ],
-        objectSrc: ["'none'"], // Disallow the use of <object>
-        imgSrc: [
-            "'self'",
-            "data:", // Allow data URIs
-            "https://www.google-analytics.com" // Google Analytics images
-        ], // Allow images only from self and data URIs
-        styleSrc: [
-            "'self'",
-            "https://cdnjs.cloudflare.com", // Allow styles from CDN
-            "https://fonts.googleapis.com", // Google Fonts
-            "'unsafe-inline'" // Allow inline styles (be cautious with this)
-        ], // Allow styles only from self and trusted sources
-        fontSrc: [
-            "'self'",
-            "https://fonts.gstatic.com" // Allow fonts from Google Fonts
-        ], // Allow fonts only from self and Google Fonts
-        frameAncestors: ["'none'"], // Prevent this page from being framed
-        upgradeInsecureRequests: [] // Automatically upgrade insecure requests
-    }
-}));
+// App.use(helmet.contentSecurityPolicy({
+//     directives: {
+//         defaultSrc: ["'self'"], // Only allow resources from the same origin
+//         scriptSrc: [
+//             "'self'",
+//             backendApiUrl,
+//             "https://cdnjs.cloudflare.com", // Allow scripts from CDN
+//             "https://www.googletagmanager.com", // Google Tag Manager
+//             "https://www.google-analytics.com", // Google Analytics
+//             "https://apis.google.com", // Google APIs
+//             "https://code.jquery.com", // jQuery
+//             "https://unpkg.com", // Unpkg for various libraries
+//             "'unsafe-inline'" // Allow inline scripts (be cautious with this)
+//         ],
+//         objectSrc: ["'none'"], // Disallow the use of <object>
+//         imgSrc: [
+//             "'self'",
+//             "data:", // Allow data URIs
+//             "https://www.google-analytics.com" // Google Analytics images
+//         ], // Allow images only from self and data URIs
+//         styleSrc: [
+//             "'self'",
+//             "https://cdnjs.cloudflare.com", // Allow styles from CDN
+//             "https://fonts.googleapis.com", // Google Fonts
+//             "'unsafe-inline'" // Allow inline styles (be cautious with this)
+//         ], // Allow styles only from self and trusted sources
+//         fontSrc: [
+//             "'self'",
+//             "https://fonts.gstatic.com" // Allow fonts from Google Fonts
+//         ], // Allow fonts only from self and Google Fonts
+//         frameAncestors: ["'none'"], // Prevent this page from being framed
+//         upgradeInsecureRequests: [] // Automatically upgrade insecure requests
+//     }
+// }));
 
 // API routes
 App.use("/api/PhysicsCycle", PhysicsCyclePdf);
