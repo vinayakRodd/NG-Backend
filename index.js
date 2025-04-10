@@ -7,12 +7,11 @@ const PORT = 9000
 const PhysicsCyclePdf = require("./PhysicsCyclePdf")
 const ChemistryCyclePdf = require("./ChemistryCyclePdf")
 
-App.use(cors({
-  origin: '*'  // For legacy browser support
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
 }));
-  // or to allow all origins (if security is not a concern)
-App.use(cors());
-  
+
 App.use(bp.json())
 App.use(express.urlencoded({ extended: false}))
 
