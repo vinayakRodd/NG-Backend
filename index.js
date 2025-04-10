@@ -3,7 +3,8 @@ const cors = require('cors')
 const bp = require('body-parser')
 const myDb = require('./MongoDb')
 const App = new express()
-const PORT = 9000
+const PORT = process.env.PORT || 9000;
+
 const PhysicsCyclePdf = require("./PhysicsCyclePdf")
 const ChemistryCyclePdf = require("./ChemistryCyclePdf")
 
@@ -64,7 +65,7 @@ App.post("/api/LabVideos",async(req,resp)=>{
 })
 
 
-App.listen(PORT,err=>{
+App.listen(PORT,'0.0.0.0',err=>{
 
     if(err)
         console.log(err)
