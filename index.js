@@ -14,7 +14,7 @@ App.use(cors({
 }));
 
 App.use(bp.json())
-App.use(express.urlencoded({ extended: false}))
+App.use(express.static(path.join(__dirname, 'build')));
 
 
 App.use("/api/PhysicsCycle",PhysicsCyclePdf)
