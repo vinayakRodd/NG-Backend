@@ -7,7 +7,7 @@ const PORT = 9000
 const PhysicsCyclePdf = require("./PhysicsCyclePdf")
 const ChemistryCyclePdf = require("./ChemistryCyclePdf")
 
-app.use(cors({
+App.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }));
