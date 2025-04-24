@@ -9,7 +9,7 @@ const PhysicsCyclePdf = require("./PhysicsCyclePdf")
 const ChemistryCyclePdf = require("./ChemistryCyclePdf")
 
 App.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3000','https://ng-backend-1-f4r9.onrender.com'
   credentials: true
 }));
 
