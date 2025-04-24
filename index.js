@@ -4,7 +4,7 @@ const bp = require('body-parser')
 const myDb = require('./MongoDb')
 const App = new express()
 const PORT = process.env.PORT || 9000;
-
+const SecondYearPdf = require("./SecondYearPdf")
 const PhysicsCyclePdf = require("./PhysicsCyclePdf")
 const ChemistryCyclePdf = require("./ChemistryCyclePdf")
 
@@ -19,6 +19,7 @@ App.use(bp.json())
 
 App.use("/api/PhysicsCycle",PhysicsCyclePdf)
 App.use("/api/ChemistryCycle",ChemistryCyclePdf)
+App.use("/api/SecondYear",SecondYearPdf)
 
 
 App.post("/api/GetPhysicsCycleSubjects",async(req,resp)=>{
